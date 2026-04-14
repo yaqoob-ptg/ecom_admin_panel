@@ -1,0 +1,330 @@
+{
+   "checksum": "18ae8d6da4395ecea435533d05f11167",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13388233800942103",
+            "date_last_used": "13399543306943584",
+            "guid": "0a928a26-a078-40a0-8ab4-195dc8907e97",
+            "id": "7",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox",
+            "visit_count": 0
+         }, {
+            "date_added": "13382256399800713",
+            "date_last_used": "13419408512523667",
+            "guid": "109c3e6f-249e-4949-83d1-f000bab0b855",
+            "id": "8",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://chatgpt.com/",
+            "visit_count": 0
+         }, {
+            "date_added": "13394018435322008",
+            "date_last_used": "13400507176918147",
+            "guid": "a260955b-7c86-4e81-8eea-933cf3432edd",
+            "id": "9",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://github.com/",
+            "visit_count": 0
+         }, {
+            "date_added": "13383045432203570",
+            "date_last_used": "13399537370098208",
+            "guid": "ff77205f-c993-496b-a1b4-520046699af0",
+            "id": "10",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://chat.deepseek.com/",
+            "visit_count": 0
+         }, {
+            "date_added": "13407572915327709",
+            "date_last_used": "0",
+            "guid": "dfde4687-e2cc-4fbe-86c8-8cbf498afe63",
+            "id": "11",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "UAE",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://console.firebase.google.com/project/uae-unis/overview",
+            "visit_count": 0
+         }, {
+            "date_added": "13396189919392413",
+            "date_last_used": "13397393627377969",
+            "guid": "35557f2c-c806-4a2d-baa8-fdd2b0fa25e7",
+            "id": "12",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "MSkin",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://console.firebase.google.com/project/mskin-spa/overview",
+            "visit_count": 0
+         }, {
+            "date_added": "13385795183167311",
+            "date_last_used": "13395331489432046",
+            "guid": "693537bc-47c8-4bf5-853c-bd973f937673",
+            "id": "13",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "GU",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://console.firebase.google.com/project/gucc-f4489/firestore/databases/-default-/data/~2FcontactUs~2F1hKVy8Mgam5Z6Xi9VVKA",
+            "visit_count": 0
+         }, {
+            "date_added": "13386918321780466",
+            "date_last_used": "13399391535688244",
+            "guid": "0c373ace-b1dc-44c5-ad3b-72705b3827c7",
+            "id": "14",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "PP",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://console.firebase.google.com/project/precisepaper-7f4c4/firestore/databases/-default-/data/~2Fuser~2FStbzrhiiEOQ2E2cmWJjfl13buFZ2",
+            "visit_count": 0
+         }, {
+            "date_added": "13389948140683167",
+            "date_last_used": "13398329019960713",
+            "guid": "0b728d80-6eab-4049-9bb3-856f2863d026",
+            "id": "15",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "BWD",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://console.firebase.google.com/project/bestwebdevelopers-570d2/firestore/databases/-default-/data/~2Forders",
+            "visit_count": 0
+         }, {
+            "date_added": "13390558897784786",
+            "date_last_used": "13394114868624758",
+            "guid": "02cc3793-91f6-4b4d-92a5-e6a98468523b",
+            "id": "16",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "TA",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://console.firebase.google.com/project/preciseleadgeneration/overview",
+            "visit_count": 0
+         }, {
+            "date_added": "13382440922432663",
+            "date_last_used": "13394617754878649",
+            "guid": "c95e2c8b-8b17-4ead-b9c0-46ae7234181d",
+            "id": "17",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://yopmail.com/",
+            "visit_count": 0
+         }, {
+            "date_added": "13388823006607485",
+            "date_last_used": "13409400948123059",
+            "guid": "f086aa40-df83-42cf-8b54-5f425aa011f7",
+            "id": "18",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Apple Developer",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://developer.apple.com/account",
+            "visit_count": 0
+         }, {
+            "date_added": "13390141410304349",
+            "date_last_used": "13391181923514156",
+            "guid": "5782f418-c6ac-49ac-a164-7dd2805fa0e5",
+            "id": "19",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "EasyAppIcon",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://easyappicon.com/",
+            "visit_count": 0
+         }, {
+            "date_added": "13394094961729212",
+            "date_last_used": "13404205203471785",
+            "guid": "9fab5ce4-c4b8-406e-8cef-8b7e99410efd",
+            "id": "20",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "App Store Connect",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://appstoreconnect.apple.com/apps",
+            "visit_count": 0
+         }, {
+            "date_added": "13406721340631009",
+            "date_last_used": "13406724172979392",
+            "guid": "ae870f48-88bc-45c9-8b46-86c05f1beb88",
+            "id": "21",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "fast review form",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://developer.apple.com/contact/app-store/?topic=expedite",
+            "visit_count": 0
+         }, {
+            "date_added": "13386933237055565",
+            "date_last_used": "13408616628372719",
+            "guid": "7daf3574-6131-45cd-8742-693ba38c536a",
+            "id": "22",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Compress Images",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://compresspng.com/",
+            "visit_count": 0
+         }, {
+            "date_added": "13394108993014886",
+            "date_last_used": "13402654579287128",
+            "guid": "15db65ff-f1f9-4078-8068-924e1acf59e1",
+            "id": "23",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Image Resizer",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://compressjpeg.online/image-resizer",
+            "visit_count": 0
+         }, {
+            "date_added": "13407844311983671",
+            "date_last_used": "0",
+            "guid": "2de00fcf-288b-48e4-bea9-a320d7b07c3c",
+            "id": "24",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "UAE University Referral - Mobile Application - yaqoob.ptg@gmail.com - Gmail",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQcqlCVbjjZbCJZzmRGZDnJLBCV",
+            "visit_count": 0
+         } ],
+         "date_added": "13420553015674596",
+         "date_last_used": "0",
+         "date_modified": "13407844311983671",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Favorites bar",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [ {
+            "date_added": "13380883072286104",
+            "date_last_used": "0",
+            "guid": "abe378c7-98b7-4f44-b52c-a6b08eeee3a5",
+            "id": "5",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "AvianTechEmporium/lib/Views/product_view/Screen/product_view.dart at main · YaqoobAhmed/AvianTechEmporium",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://github.com/YaqoobAhmed/AvianTechEmporium/blob/main/lib/Views/product_view/Screen/product_view.dart",
+            "visit_count": 0
+         }, {
+            "date_added": "13388316723625925",
+            "date_last_used": "0",
+            "guid": "ece1f719-abbd-4334-a503-ef2205a19b47",
+            "id": "6",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "app icon stackoverflow",
+            "show_icon": false,
+            "source": "unknown",
+            "type": "url",
+            "url": "https://stackoverflow.com/questions/43928702/how-to-change-the-application-launcher-icon-on-flutter",
+            "visit_count": 0
+         } ],
+         "date_added": "13420553015674596",
+         "date_last_used": "0",
+         "date_modified": "13388316723625925",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13420553015674596",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "workspaces_v2": {
+         "children": [  ],
+         "date_added": "13420553858132350",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "75aa6670-344f-549d-b742-660f029506ab",
+         "id": "26",
+         "name": "Workspaces",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

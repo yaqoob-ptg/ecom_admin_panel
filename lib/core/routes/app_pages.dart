@@ -3,7 +3,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../screens/main/main_screen.dart';
 
 class AppPages {
-  static const HOME = '/';
+  static const HOME = '/home';
   static const LOGIN = '/login';
 
   static final routes = [

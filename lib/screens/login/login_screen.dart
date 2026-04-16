@@ -1,8 +1,10 @@
+import 'package:admin/core/routes/app_pages.dart';
 import 'package:admin/screens/main/main_screen.dart';
 import 'package:admin/utility/constants.dart';
 import 'package:admin/utility/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -49,16 +51,12 @@ class LoginScreen extends StatelessWidget {
             return await context.userProvider.register(data);
           },
 
-          onSubmitAnimationCompleted: () {
-            final user = context.userProvider.getLoginUsr();
+          onSubmitAnimationCompleted: () async {
+            final user = await context.userProvider.getLoginUsr();
             if (user?.sId != null) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => MainScreen()),
-              );
+              Get.offAllNamed(AppPages.HOME);
             } else {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => const LoginScreen()),
-              );
+              Get.offAllNamed(AppPages.LOGIN);
             }
           },
 

@@ -16,8 +16,20 @@ class UserProvider extends ChangeNotifier {
   HttpService service = HttpService();
   final DataProvider _dataProvider;
   final box = GetStorage();
+  User? _user;
+  User? get user => _user;
 
-  UserProvider(this._dataProvider);
+  UserProvider(this._dataProvider) {
+    _initUser(); // 🔥 load on startup
+  }
+
+  void _initUser() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _user = getLoginUsr();
+      print(" UserProvider initialized with user: $_user");
+      notifyListeners();
+    });
+  }
 
   // ─── Login ────────────────────────────────────────────────────────────────
   Future<String?> login(LoginData data) async {
@@ -121,8 +133,13 @@ class UserProvider extends ChangeNotifier {
   }
 
   // ─── Save Login Info ──────────────────────────────────────────────────────
+  // Future<void> saveLoginInfo(User? loginUser) async {
+  //   await box.write(USER_INFO_BOX, loginUser?.toJson());
+  // }
   Future<void> saveLoginInfo(User? loginUser) async {
+    _user = loginUser;
     await box.write(USER_INFO_BOX, loginUser?.toJson());
+    notifyListeners(); // 🔥 important
   }
 
   // ─── Get Logged In User ───────────────────────────────────────────────────
@@ -134,7 +151,9 @@ class UserProvider extends ChangeNotifier {
 
 // ─── Logout ───────────────────────────────────────────────────────────────
   void logOutUser() {
+    _user = null;
     box.remove(USER_INFO_BOX);
+    notifyListeners(); // 🔥 important
     Get.offAll(const LoginScreen());
   }
 }

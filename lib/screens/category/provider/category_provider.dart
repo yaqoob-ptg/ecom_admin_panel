@@ -85,7 +85,7 @@ class CategoryProvider extends ChangeNotifier {
           clearFields();
           SnackBarHelper.showSuccessSnackBar(apiResponse.message);
           log('category updated');
-          _dataProvider.getAllCategory();
+          await _dataProvider.getAllCategory();
         } else {
           SnackBarHelper.showErrorSnackBar(
             'Failed to update category: ${apiResponse.message}',
@@ -132,7 +132,7 @@ class CategoryProvider extends ChangeNotifier {
         ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
         if (apiResponse.success) {
           SnackBarHelper.showSuccessSnackBar("Category deleted Successfully !");
-          _dataProvider.getAllCategory();
+          await _dataProvider.getAllCategory();
         } else {
           SnackBarHelper.showErrorSnackBar(
               "Error ${response.body?['message'] ?? response.statusText}");

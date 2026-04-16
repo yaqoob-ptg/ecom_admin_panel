@@ -37,9 +37,11 @@
 //   }
 // }
 
+import 'package:admin/screens/login/provider/user_provider.dart';
 import 'package:admin/utility/constants.dart';
 import 'package:admin/utility/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileCard extends StatefulWidget {
   const ProfileCard({Key? key}) : super(key: key);
@@ -89,8 +91,9 @@ class _ProfileCardState extends State<ProfileCard> {
         const PopupMenuDivider(),
         PopupMenuItem<dynamic>(
           onTap: () {
-            // TODO: Handle logout logic
-            context.userProvider.logOutUser();
+            Future.microtask(() {
+              context.read<UserProvider>().logOutUser();
+            });
           },
           child: const Row(
             children: [
@@ -123,19 +126,38 @@ class _ProfileCardState extends State<ProfileCard> {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(color: Colors.white10),
         ),
-        child: Row(
-          children: [
-            Image.asset(
-              "assets/images/profile_pic.png",
-              height: 38,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("${context.userProvider.getLoginUsr()?.name}"),
-            ),
-            const Icon(Icons.keyboard_arrow_down),
-          ],
+        child: Consumer<UserProvider>(
+          builder: (context, userProvider, child) {
+            final user = userProvider.user;
+            return Row(
+              children: [
+                Image.asset(
+                  "assets/images/profile_pic.png",
+                  height: 38,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPadding / 2),
+                  child: Text("${user?.name ?? 'User'}"),
+                ),
+                const Icon(Icons.keyboard_arrow_down),
+              ],
+            );
+          },
+          // child: Row(
+          //   children: [
+          //     Image.asset(
+          //       "assets/images/profile_pic.png",
+          //       height: 38,
+          //     ),
+          //     Padding(
+          //       padding:
+          //           const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+          //       child: Text("${context.userProvider.getLoginUsr()?.name}"),
+          //     ),
+          //     const Icon(Icons.keyboard_arrow_down),
+          //   ],
+          // ),
         ),
       ),
     );

@@ -86,7 +86,7 @@ class DashBoardProvider extends ChangeNotifier {
       if (response.isOk) {
         ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
         if (apiResponse.success == true) {
-          _dataProvider.getAllProduct();
+          await _dataProvider.getAllProduct();
           clearFields();
           SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
           log('products added');
@@ -145,7 +145,7 @@ class DashBoardProvider extends ChangeNotifier {
           SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
           log('products added');
           clearFields();
-          _dataProvider.getAllProduct();
+          await _dataProvider.getAllProduct();
         } else {
           SnackBarHelper.showErrorSnackBar(
               'Failed to add products: ${apiResponse.message}');

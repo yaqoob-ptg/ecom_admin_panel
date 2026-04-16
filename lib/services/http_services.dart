@@ -18,8 +18,10 @@ class HttpService {
   Future<Response> addItem(
       {required String endpointUrl, required dynamic itemData}) async {
     try {
-      final response =
-          await GetConnect().post('$baseUrl/$endpointUrl', itemData);
+      final response = await GetConnect().post(
+        '$baseUrl/$endpointUrl',
+        itemData,
+      );
       print(response.body);
       return response;
     } catch (e) {
@@ -34,7 +36,10 @@ class HttpService {
       required String itemId,
       required dynamic itemData}) async {
     try {
-      return await GetConnect().put('$baseUrl/$endpointUrl/$itemId', itemData);
+      return await GetConnect().put(
+        '$baseUrl/$endpointUrl/$itemId',
+        itemData,
+      );
     } catch (e) {
       return Response(
           body: json.encode({'message': e.toString()}), statusCode: 500);
@@ -51,3 +56,6 @@ class HttpService {
     }
   }
 }
+
+
+  // contentType: 'multipart/form-data',

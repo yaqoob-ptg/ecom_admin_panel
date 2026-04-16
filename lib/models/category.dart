@@ -11,10 +11,13 @@ class Category {
 
   String get fullUrl {
     if (image == null || image!.isEmpty) return '';
+
+    // If already full Cloudinary URL → return as is
     if (image!.startsWith('http')) {
-      final uri = Uri.parse(image!);
-      return '${AppConfig.baseUrl}${uri.path}';
+      return image!;
     }
+
+    // Otherwise treat as backend relative path
     return '${AppConfig.baseUrl}$image';
   }
 

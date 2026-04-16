@@ -68,17 +68,39 @@ class DataProvider extends ChangeNotifier {
 
   List<MyNotification> get notifications => _filteredNotifications;
 
-  DataProvider() {
-    getAllProduct();
-    getAllCategory();
-    getAllSubCategory();
-    getAllBrands();
-    getAllVariantType();
-    getAllVariant();
-    getAllPosters();
-    getAllCoupons();
-    getAllOrders();
-    getAllNotifications();
+  // DataProvider() {
+  //   getAllProduct();
+  //   getAllCategory();
+  //   getAllSubCategory();
+  //   getAllBrands();
+  //   getAllVariantType();
+  //   getAllVariant();
+  //   getAllPosters();
+  //   getAllCoupons();
+  //   getAllOrders();
+  //   getAllNotifications();
+  // }
+
+  bool _isInitialized = false;
+  bool get isInitialized => _isInitialized;
+
+  Future<void> init() async {
+    if (_isInitialized) return; // ✅ prevent multiple calls
+
+    _isInitialized = true;
+
+    await Future.wait([
+      getAllProduct(),
+      getAllCategory(),
+      getAllSubCategory(),
+      getAllBrands(),
+      getAllVariantType(),
+      getAllVariant(),
+      getAllPosters(),
+      getAllCoupons(),
+      getAllOrders(),
+      getAllNotifications(),
+    ]);
   }
 
 // getAllCategory

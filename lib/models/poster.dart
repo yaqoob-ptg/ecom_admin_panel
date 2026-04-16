@@ -18,10 +18,13 @@ class Poster {
 
   String get fullUrl {
     if (imageUrl == null || imageUrl!.isEmpty) return '';
+
+    // If already full Cloudinary URL → return as is
     if (imageUrl!.startsWith('http')) {
-      final uri = Uri.parse(imageUrl!);
-      return '${AppConfig.baseUrl}${uri.path}';
+      return imageUrl!;
     }
+
+    // Otherwise treat as backend relative path
     return '${AppConfig.baseUrl}$imageUrl';
   }
 

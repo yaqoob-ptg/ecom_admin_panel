@@ -1,7 +1,9 @@
+import 'package:admin/models/user.dart';
 import 'package:admin/screens/login/login_screen.dart';
 import 'package:admin/screens/login/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'core/data/data_provider.dart';
@@ -21,8 +23,9 @@ import 'screens/variants_type/provider/variant_type_provider.dart';
 import 'utility/constants.dart';
 import 'utility/extensions.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init(); // 🔥 MUST ADD THIS
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => DataProvider()),
     ChangeNotifierProvider(create: (context) => MainScreenProvider()),
@@ -54,16 +57,18 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    User? loginUser = context.userProvider.user;
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Admin Panel',
+      title: 'E_Com Admin',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: bgColor,
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      initialRoute: AppPages.LOGIN,
+      initialRoute: loginUser != null ? AppPages.HOME : AppPages.LOGIN,
       unknownRoute: GetPage(name: '/login', page: () => LoginScreen()),
       defaultTransition: Transition.cupertino,
       getPages: AppPages.routes,

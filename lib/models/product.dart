@@ -144,11 +144,14 @@ class Images {
   Images({this.image, this.url, this.sId});
 
   String get fullUrl {
-    if (url == null || url!.isEmpty) return '';
+    if (image == null || url!.isEmpty) return '';
+
+    // If already full Cloudinary URL → return as is
     if (url!.startsWith('http')) {
-      final uri = Uri.parse(url!);
-      return '${AppConfig.baseUrl}${uri.path}';
+      return url!;
     }
+
+    // Otherwise treat as backend relative path
     return '${AppConfig.baseUrl}$url';
   }
 

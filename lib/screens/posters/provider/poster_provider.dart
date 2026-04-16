@@ -49,7 +49,7 @@ class PosterProvider extends ChangeNotifier {
           clearFields();
           SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
           log('poster added');
-          _dataProvider.getAllPosters();
+          await _dataProvider.getAllPosters();
         } else {
           SnackBarHelper.showErrorSnackBar(
               'Failed to add posters: ${apiResponse.message}');
@@ -85,7 +85,7 @@ class PosterProvider extends ChangeNotifier {
           clearFields();
           SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
           log('poster added');
-          _dataProvider.getAllPosters();
+          await _dataProvider.getAllPosters();
         } else {
           SnackBarHelper.showErrorSnackBar(
               'Failed to add poster: ${apiResponse.message}');

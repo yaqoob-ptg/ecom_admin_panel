@@ -55,7 +55,9 @@ class Product {
     proVariantTypeId = json['proVariantTypeId'] != null
         ? new ProTypeRef.fromJson(json['proVariantTypeId'])
         : null;
-    proVariantId = json['proVariantId'].cast<String>();
+    // proVariantId = json['proVariantId'].cast<String>();
+    proVariantId = (json['proVariantId'] as List?)?.cast<String>() ?? [];
+
     if (json['images'] != null) {
       images = <Images>[];
       json['images'].forEach((v) {
@@ -144,7 +146,7 @@ class Images {
   Images({this.image, this.url, this.sId});
 
   String get fullUrl {
-    if (image == null || url!.isEmpty) return '';
+    if (url == null || url!.isEmpty) return '';
 
     // If already full Cloudinary URL → return as is
     if (url!.startsWith('http')) {

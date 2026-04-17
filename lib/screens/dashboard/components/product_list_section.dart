@@ -444,6 +444,7 @@
 //   );
 // }
 
+import 'package:admin/utility/delete_dialog.dart';
 import 'package:admin/utility/extensions.dart';
 import '../../../core/data/data_provider.dart';
 import '../../../models/product.dart';
@@ -514,6 +515,7 @@ class _DesktopProductTable extends StatelessWidget {
     final cellFontSize = AppFontSize.tableCell(context);
     // Tighter column spacing so columns breathe without overflowing
     const double colSpacing = 12.0;
+    final scrollController = ScrollController();
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -545,16 +547,24 @@ class _DesktopProductTable extends StatelessWidget {
               context,
               products[index],
               edit: () => showAddProductForm(context, products[index]),
-              delete: () =>
-                  context.dashBoardProvider.deleteProduct(products[index]),
+              // delete: () =>
+              //     context.dashBoardProvider.deleteProduct(products[index]),
+              delete: () async {
+                final confirm = await showDeleteConfirmationDialog(context);
+                if (confirm) {
+                  context.dashBoardProvider.deleteProduct(products[index]);
+                }
+              },
             ),
           ),
         );
 
         if (needsScroll) {
           return Scrollbar(
+            controller: scrollController,
             thumbVisibility: true,
             child: SingleChildScrollView(
+              controller: scrollController,
               scrollDirection: Axis.horizontal,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minWidth: _minTableWidth),

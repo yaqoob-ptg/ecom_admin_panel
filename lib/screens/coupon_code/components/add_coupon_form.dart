@@ -177,6 +177,28 @@ class CouponSubmitForm extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(
+                height: defaultPadding,
+              ),
+              Text(
+                "Apply Coupon On any of the following (optional)",
+                style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Note: If you select a category, the coupon will be applied to all products in that category. If you select a sub-category, the coupon will be applied to all products in that sub-category. If you select a product, the coupon will be applied only to that product. If you select none, the coupon will be applied to the entire store.",
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 12,
+                  fontStyle: FontStyle.italic,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: defaultPadding,
+              ),
               Row(
                 children: [
                   Expanded(

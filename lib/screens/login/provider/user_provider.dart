@@ -39,6 +39,7 @@ class UserProvider extends ChangeNotifier {
         "password": data.password,
         'requiredRole': 'admin',
       };
+      print(loginData);
 
       final response = await service.addItem(
         endpointUrl: 'users/login',
@@ -59,7 +60,9 @@ class UserProvider extends ChangeNotifier {
             );
             return 'Email not verified';
           }
-
+          // Save tokens and user info
+          await box.write('accessToken', response.body['accessToken']);
+          await box.write('refreshToken', response.body['refreshToken']);
           await saveLoginInfo(apiResponse.data);
           SnackBarHelper.showSuccessSnackBar(
               apiResponse.message ?? 'Login successful');
@@ -88,12 +91,15 @@ class UserProvider extends ChangeNotifier {
       // Pull extra fields added in additionalSignupFields
       final phone = data.additionalSignupData?['phone'] ?? '';
       final fullName = data.additionalSignupData?['fullName'] ?? '';
+      final location =
+          (data.additionalSignupData?['location'] ?? '').toString().trim();
 
       Map<String, dynamic> registerData = {
         "name": fullName.trim(),
         "email": data.name?.toLowerCase().trim() ??
             '', // flutter_login uses name for email field
         "phone": phone.trim(),
+        'location': location.trim(),
         "password": data.password ?? '',
         'role': 'admin',
       };

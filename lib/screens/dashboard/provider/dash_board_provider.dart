@@ -84,20 +84,34 @@ class DashBoardProvider extends ChangeNotifier {
       final response =
           await service.addItem(endpointUrl: 'products', itemData: form);
       if (response.isOk) {
+        if (response.body == null || response.body is! Map) {
+          SnackBarHelper.showErrorSnackBar('Invalid server response');
+          return;
+        }
         ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        // if (apiResponse.success == true) {
+        //   await _dataProvider.getAllProduct();
+        //   notifyListeners();
+        //   SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+        //   log('products added');
+        //   clearFields();
+        // }
         if (apiResponse.success == true) {
-          await _dataProvider.getAllProduct();
-          clearFields();
+          await _dataProvider.getAllProduct(); // ✅ await FIRST
           SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
-          log('products added');
+          log('product added');
           clearFields();
+          notifyListeners(); // ✅ AFTER data is fresh
         } else {
           SnackBarHelper.showErrorSnackBar(
               'Failed to add products: ${apiResponse.message}');
         }
       } else {
-        SnackBarHelper.showErrorSnackBar(
-            'Error ${response.body?['message'] ?? response.statusText}');
+        final message = response.body is Map
+            ? response.body['message']
+            : response.statusText;
+
+        SnackBarHelper.showErrorSnackBar('Error $message');
       }
     } catch (e) {
       print(e);
@@ -106,7 +120,6 @@ class DashBoardProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: should complete updateProduct
   updateProduct() async {
     try {
       Map<String, dynamic> formDataMap = {
@@ -139,20 +152,33 @@ class DashBoardProvider extends ChangeNotifier {
           itemId: '${productForUpdate?.sId}');
 
       if (response.isOk) {
+        if (response.body == null || response.body is! Map) {
+          SnackBarHelper.showErrorSnackBar('Invalid server response');
+          return;
+        }
         ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        // if (apiResponse.success == true) {
+        //   clearFields();
+        //   SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+        //   log('products added');
+        //   clearFields();
+        //   await _dataProvider.getAllProduct();
+        // }
         if (apiResponse.success == true) {
-          clearFields();
+          await _dataProvider.getAllProduct(); // ✅ await FIRST
           SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
-          log('products added');
           clearFields();
-          await _dataProvider.getAllProduct();
+          notifyListeners(); // ✅ AFTER data is fresh
         } else {
           SnackBarHelper.showErrorSnackBar(
               'Failed to add products: ${apiResponse.message}');
         }
       } else {
-        SnackBarHelper.showErrorSnackBar(
-            'Error ${response.body?['message'] ?? response.statusText}');
+        final message = response.body is Map
+            ? response.body['message']
+            : response.statusText;
+
+        SnackBarHelper.showErrorSnackBar('Error $message');
       }
     } catch (e) {
       print(e);
@@ -179,11 +205,14 @@ class DashBoardProvider extends ChangeNotifier {
         ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
         if (apiResponse.success == true) {
           SnackBarHelper.showSuccessSnackBar('Product Deleted Successfully');
-          _dataProvider.getAllProduct();
+          await _dataProvider.getAllProduct();
         }
       } else {
-        SnackBarHelper.showErrorSnackBar(
-            'Error ${response.body?['message'] ?? response.statusText}');
+        final message = response.body is Map
+            ? response.body['message']
+            : response.statusText;
+
+        SnackBarHelper.showErrorSnackBar('Error $message');
       }
     } catch (e) {
       print(e);
@@ -222,7 +251,8 @@ class DashBoardProvider extends ChangeNotifier {
     // Loop over the provided image files and add them to the form data
     if (imgXFiles != null) {
       for (int i = 0; i < imgXFiles.length; i++) {
-        XFile? imgXFile = imgXFiles[i]['image' + (i + 1).toString()];
+        // XFile? imgXFile = imgXFiles[i]['image' + (i + 1).toString()];
+        XFile? imgXFile = imgXFiles[i].values.first;
         if (imgXFile != null) {
           // Check if it's running on the web
           if (kIsWeb) {

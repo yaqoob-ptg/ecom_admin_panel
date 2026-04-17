@@ -1,17 +1,92 @@
 import 'dart:convert';
+import 'package:admin/core/routes/app_pages.dart';
 import 'package:get/get_connect.dart';
 import 'package:get/get.dart';
 import '../utility/constants.dart';
+import 'package:get_storage/get_storage.dart';
 
 class HttpService {
   final String baseUrl = MAIN_URL;
+  final box = GetStorage();
+
+  Response _handleResponse(Response response) {
+    // 🔐 Unauthorized
+    if (response.statusCode == 401) {
+      box.remove('accessToken');
+      box.remove('refreshToken');
+      Get.offAllNamed(AppPages.LOGIN);
+
+      return Response(
+        statusCode: 401,
+        body: {'message': 'Session expired. Please login again.'},
+      );
+    }
+
+    // ❌ Server error
+    if (response.statusCode != null && response.statusCode! >= 500) {
+      return Response(
+        statusCode: response.statusCode,
+        body: {'message': 'Server error. Please try again later.'},
+      );
+    }
+
+    // ❌ Bad request / validation
+    if (response.statusCode != null && response.statusCode! >= 400) {
+      return Response(
+        statusCode: response.statusCode,
+        body: {'message': response.body?['message'] ?? 'Something went wrong'},
+      );
+    }
+
+    // ✅ Success
+    return response;
+  }
+
+  Response _handleException(dynamic e) {
+    print('HTTP ERROR: $e');
+
+    // 🌐 No internet / timeout
+    if (e.toString().contains('SocketException')) {
+      return Response(
+        statusCode: 0,
+        body: {'message': 'No internet connection'},
+      );
+    }
+
+    // ⏱ Timeout
+    if (e.toString().contains('TimeoutException')) {
+      return Response(
+        statusCode: 0,
+        body: {'message': 'Request timeout'},
+      );
+    }
+
+    // ❌ Unknown error
+    return Response(
+      statusCode: 500,
+      body: {'message': e.toString()},
+    );
+  }
+
+  Map<String, String> get _headers {
+    final token = box.read('accessToken');
+
+    return {
+      // 'Content-Type': 'application/json',
+      if (token != null) 'Authorization': token,
+    };
+  }
 
   Future<Response> getItems({required String endpointUrl}) async {
     try {
-      return await GetConnect().get('$baseUrl/$endpointUrl');
+      final response = await GetConnect().get(
+        '$baseUrl/$endpointUrl',
+        headers: _headers,
+      );
+
+      return _handleResponse(response);
     } catch (e) {
-      return Response(
-          body: json.encode({'error': e.toString()}), statusCode: 500);
+      return _handleException(e);
     }
   }
 
@@ -21,13 +96,12 @@ class HttpService {
       final response = await GetConnect().post(
         '$baseUrl/$endpointUrl',
         itemData,
+        headers: _headers,
       );
-      print(response.body);
-      return response;
+
+      return _handleResponse(response);
     } catch (e) {
-      print('Error: $e');
-      return Response(
-          body: json.encode({'message': e.toString()}), statusCode: 500);
+      return _handleException(e);
     }
   }
 
@@ -36,23 +110,28 @@ class HttpService {
       required String itemId,
       required dynamic itemData}) async {
     try {
-      return await GetConnect().put(
+      final response = await GetConnect().put(
         '$baseUrl/$endpointUrl/$itemId',
         itemData,
+        headers: _headers,
       );
+      return _handleResponse(response);
     } catch (e) {
-      return Response(
-          body: json.encode({'message': e.toString()}), statusCode: 500);
+      return _handleException(e);
     }
   }
 
   Future<Response> deleteItem(
       {required String endpointUrl, required String itemId}) async {
     try {
-      return await GetConnect().delete('$baseUrl/$endpointUrl/$itemId');
+      final response = await GetConnect().delete(
+        '$baseUrl/$endpointUrl/$itemId',
+        headers: _headers,
+      );
+
+      return _handleResponse(response);
     } catch (e) {
-      return Response(
-          body: json.encode({'message': e.toString()}), statusCode: 500);
+      return _handleException(e);
     }
   }
 }

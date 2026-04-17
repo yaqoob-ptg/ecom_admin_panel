@@ -6,9 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String? selectedLocation;
+  bool isSignup = false;
+  final List<String> locations = [
+    'Saddar',
+    'Tariq Road',
+    'Hyderi',
+  ];
   @override
   Widget build(BuildContext context) {
     final List<UserFormField>? fields = [
@@ -31,9 +43,47 @@ class LoginScreen extends StatelessWidget {
         },
       ),
     ];
+    Widget headerWidget() {
+      return isSignup
+          ? Column(
+              children: [
+                const SizedBox(height: 10),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: bgColor,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: selectedLocation,
+                      hint: const Text("Select Location"),
+                      isExpanded: true,
+                      items: locations.map((loc) {
+                        return DropdownMenuItem(
+                          value: loc,
+                          child: Text(loc),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedLocation = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
+            )
+          : const SizedBox.shrink();
+    }
+
     return Stack(
       children: [
         FlutterLogin(
+          headerWidget: headerWidget(),
           loginAfterSignUp: false,
           logo: const AssetImage('assets/images/logo.png'),
 
@@ -48,6 +98,15 @@ class LoginScreen extends StatelessWidget {
           },
 
           onSignup: (SignupData data) async {
+            // return await context.userProvider.register(data);
+            if (selectedLocation == null) {
+              return "Please select location";
+            }
+
+            // attach custom field into signup data
+            // data.additionalSignupData ??= {};
+            data.additionalSignupData!['location'] = selectedLocation!;
+
             return await context.userProvider.register(data);
           },
 
@@ -58,6 +117,11 @@ class LoginScreen extends StatelessWidget {
             } else {
               Get.offAllNamed(AppPages.LOGIN);
             }
+          },
+          onSwitchAuthMode: (mode) {
+            setState(() {
+              isSignup = mode == AuthMode.signup;
+            });
           },
 
           onRecoverPassword: (_) => null,

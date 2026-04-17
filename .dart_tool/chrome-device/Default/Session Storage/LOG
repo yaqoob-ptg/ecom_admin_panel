@@ -1,4 +1,10 @@
-2026/04/16-12:02:00.227 45e8 Reusing MANIFEST C:\Users\P520\AppData\Local\Temp\flutter_tools.eac117f0\flutter_tools_chrome_device.e547475a\Default\Session Storage/MANIFEST-000001
-2026/04/16-12:02:00.229 45e8 Recovering log #4
-2026/04/16-12:02:00.236 45e8 Reusing old log C:\Users\P520\AppData\Local\Temp\flutter_tools.eac117f0\flutter_tools_chrome_device.e547475a\Default\Session Storage/000004.log 
-2026/04/16-12:02:00.239 45e8 Delete type=0 #3
+2026/04/17-16:26:30.440 45f4 Reusing MANIFEST C:\Users\P520\AppData\Local\Temp\flutter_tools.1d0d12a1\flutter_tools_chrome_device.7c9f4b58\Default\Session Storage/MANIFEST-000001
+2026/04/17-16:26:30.457 45f4 Recovering log #4
+2026/04/17-16:26:30.466 45f4 Reusing old log C:\Users\P520\AppData\Local\Temp\flutter_tools.1d0d12a1\flutter_tools_chrome_device.7c9f4b58\Default\Session Storage/000004.log 
+2026/04/17-16:26:30.467 45f4 Delete type=0 #3
+2026/04/17-17:13:57.289 5378 Level-0 table #8: started
+2026/04/17-17:13:57.293 5378 Level-0 table #8: 60226 bytes OK
+2026/04/17-17:13:57.296 5378 Delete type=0 #4
+2026/04/17-17:17:10.108 5378 Level-0 table #10: started
+2026/04/17-17:17:10.115 5378 Level-0 table #10: 88779 bytes OK
+2026/04/17-17:17:10.117 5378 Delete type=0 #7

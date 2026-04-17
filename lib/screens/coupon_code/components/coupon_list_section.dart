@@ -93,7 +93,7 @@ DataRow couponDataRow(Coupon coupon, int index,
                 color: colors[index % colors.length],
                 shape: BoxShape.circle,
               ),
-              child: Text(index.toString(), textAlign: TextAlign.center),
+              child: Center(child: Text(index.toString())),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

@@ -51,14 +51,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
-                    color: bgColor,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey),
+                    color: Colors.grey[900],
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(color: Colors.black),
                   ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       value: selectedLocation,
-                      hint: const Text("Select Location"),
+                      hint: Text(
+                        "Select Location",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w100),
+                      ),
                       isExpanded: true,
                       items: locations.map((loc) {
                         return DropdownMenuItem(
@@ -74,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 14),
               ],
             )
           : const SizedBox.shrink();
@@ -118,15 +124,71 @@ class _LoginScreenState extends State<LoginScreen> {
               Get.offAllNamed(AppPages.LOGIN);
             }
           },
+
           onSwitchAuthMode: (mode) {
             setState(() {
               isSignup = mode == AuthMode.signup;
             });
           },
 
-          onRecoverPassword: (_) => null,
-          hideForgotPasswordButton: true,
+          // ✅ UPDATED: Implement forgot password functionality
+          onRecoverPassword: (email) async {
+            // Show loading indicator
+            // Get.dialog(
+            //   const Center(child: CircularProgressIndicator()),
+            //   barrierDismissible: false,
+            // );
 
+            // Call the forgot password function
+            final result =
+                await context.userProvider.forgotPassword(email ?? '');
+
+            // Close loading dialog
+            Get.back();
+
+            if (result == null) {
+              // Success - show dialog with instructions
+              Get.dialog(
+                AlertDialog(
+                  title: const Icon(Icons.email, size: 50, color: Colors.green),
+                  content: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Check Your Email',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'We have sent a password reset link to your email address. '
+                        'Please check your inbox and follow the instructions to reset your password.',
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Get.back(),
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+                barrierDismissible: false,
+              );
+              return null; // Return null to indicate success
+            } else {
+              // Error - show error message
+              Get.snackbar(
+                'Error',
+                result,
+                snackPosition: SnackPosition.BOTTOM,
+                backgroundColor: Colors.red,
+                colorText: Colors.white,
+              );
+              return result; // Return error message to flutter_login
+            }
+          },
           theme: LoginTheme(
             primaryColor: secondaryColor,
             accentColor: primaryColor,
@@ -136,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             cardTheme: const CardTheme(
               color: Colors.black,
-              surfaceTintColor: secondaryColor,
+              // surfaceTintColor: secondaryColor,
             ),
             titleStyle: const TextStyle(color: Colors.black),
           ),

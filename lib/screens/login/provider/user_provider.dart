@@ -85,6 +85,110 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
+  // ─── Forgot Password - Request Reset ─────────────────────────────────────
+  Future<String?> forgotPassword(String email) async {
+    try {
+      final response = await service.addItem(
+        endpointUrl: 'users/forgot-password',
+        itemData: {'email': email.trim().toLowerCase()},
+      );
+
+      if (response.statusCode == 429) {
+        final message = response.body?['message'] ??
+            'Too many requests. Please try again later.';
+        SnackBarHelper.showErrorSnackBar(message);
+        return message;
+      }
+
+      if (response.isOk) {
+        final ApiResponse apiResponse =
+            ApiResponse.fromJson(response.body, null);
+
+        if (apiResponse.success == true) {
+          final remainingAttempts = response.body?['remainingAttempts'];
+          String successMessage =
+              apiResponse.message ?? 'Password reset link has been sent.';
+          if (remainingAttempts != null) {
+            successMessage +=
+                ' You have $remainingAttempts attempts remaining today.';
+          }
+          SnackBarHelper.showSuccessSnackBar(successMessage);
+          return null;
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+            apiResponse.message ?? 'Failed to send reset link',
+          );
+          return apiResponse.message ?? 'Failed to send reset link';
+        }
+      } else {
+        final msg = response.body?['message'] ?? response.statusText;
+        SnackBarHelper.showErrorSnackBar('Error: $msg');
+        return 'Error: $msg';
+      }
+    } catch (e) {
+      log('Forgot password error: $e');
+      SnackBarHelper.showErrorSnackBar('An error occurred. Please try again.');
+      return 'An error occurred: $e';
+    }
+  }
+
+  // ─── Reset Password ─────────────────────────────────────────────────────
+  Future<String?> resetPassword(
+      String token, String newPassword, String confirmPassword) async {
+    try {
+      final response = await service.addItem(
+        endpointUrl: 'users/reset-password/$token',
+        itemData: {
+          'password': newPassword,
+          'confirmPassword': confirmPassword,
+        },
+      );
+
+      if (response.isOk) {
+        final ApiResponse apiResponse =
+            ApiResponse.fromJson(response.body, null);
+
+        if (apiResponse.success == true) {
+          SnackBarHelper.showSuccessSnackBar(
+            apiResponse.message ?? 'Password reset successfully! Please login.',
+          );
+          log('Password reset successful');
+          return null;
+        } else {
+          SnackBarHelper.showErrorSnackBar(
+            apiResponse.message ?? 'Failed to reset password',
+          );
+          return apiResponse.message ?? 'Failed to reset password';
+        }
+      } else {
+        final msg = response.body?['message'] ?? response.statusText;
+        SnackBarHelper.showErrorSnackBar('Error: $msg');
+        return 'Error: $msg';
+      }
+    } catch (e) {
+      log('Reset password error: $e');
+      SnackBarHelper.showErrorSnackBar('An error occurred. Please try again.');
+      return 'An error occurred: $e';
+    }
+  }
+
+  // ─── Verify Reset Token ─────────────────────────────────────────────────
+  Future<bool> verifyResetToken(String token) async {
+    try {
+      final response = await service.getItems(
+        endpointUrl: 'users/verify-reset-token/$token',
+      );
+
+      if (response.isOk && response.body['success'] == true) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      log('Verify token error: $e');
+      return false;
+    }
+  }
+
   // ─── Register ─────────────────────────────────────────────────────────────
   Future<String?> register(SignupData data) async {
     try {

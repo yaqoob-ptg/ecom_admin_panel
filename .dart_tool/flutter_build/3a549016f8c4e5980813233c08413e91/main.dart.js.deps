@@ -223,7 +223,6 @@ file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/gap-3.0.1/lib/src/w
 file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/gap-3.0.1/lib/src/widgets/sliver_gap.dart
 file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.3/lib/get.dart
 file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.3/lib/get_common/get_reset.dart
-file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.3/lib/get_connect.dart
 file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.3/lib/get_connect/connect.dart
 file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.3/lib/get_connect/http/src/certificates/certificates.dart
 file:///C:/Users/P520/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.7.3/lib/get_connect/http/src/exceptions/exceptions.dart
@@ -1161,6 +1160,7 @@ file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/servic
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/utility/app_config.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/utility/color_list.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/utility/constants.dart
+file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/utility/delete_dialog.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/utility/extensions.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/utility/responsive_constants.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/utility/snack_bar_helper.dart

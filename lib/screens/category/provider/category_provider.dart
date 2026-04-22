@@ -126,17 +126,17 @@ class CategoryProvider extends ChangeNotifier {
 
   Future<void> deleteCategory(Category category) async {
     try {
-      final response = await service.deleteItem(
+      Response response = await service.deleteItem(
           endpointUrl: "categories", itemId: category.sId ?? "");
       if (response.isOk) {
         ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
         if (apiResponse.success) {
           SnackBarHelper.showSuccessSnackBar("Category deleted Successfully !");
           await _dataProvider.getAllCategory();
-        } else {
-          SnackBarHelper.showErrorSnackBar(
-              "Error ${response.body?['message'] ?? response.statusText}");
         }
+      } else {
+        SnackBarHelper.showErrorSnackBar(
+            "Error ${response.body?['message'] ?? response.statusText}");
       }
     } catch (e) {
       SnackBarHelper.showErrorSnackBar("Error $e");

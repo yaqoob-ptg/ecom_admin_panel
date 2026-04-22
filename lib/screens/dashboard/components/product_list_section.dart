@@ -533,13 +533,15 @@ class _DesktopProductTable extends StatelessWidget {
             fontSize: cellFontSize,
             color: Colors.white,
           ),
-          columns: const [
-            DataColumn(label: Text("Product Name")),
-            DataColumn(label: Text("Category")),
-            DataColumn(label: Text("Sub Category")),
-            DataColumn(label: Text("Price")),
-            DataColumn(label: Text("Edit")),
-            DataColumn(label: Text("Delete")),
+          columns: [
+            if (context.userProvider.user?.role == 'superAdmin')
+              const DataColumn(label: Text("Product By")),
+            const DataColumn(label: Text("Product Name")),
+            const DataColumn(label: Text("Category")),
+            const DataColumn(label: Text("Sub Category")),
+            const DataColumn(label: Text("Price")),
+            const DataColumn(label: Text("Edit")),
+            const DataColumn(label: Text("Delete")),
           ],
           rows: List.generate(
             products.length,
@@ -673,6 +675,7 @@ class _MobileProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(product.adminId?.name ?? ''),
                 Text(
                   product.name ?? '',
                   style: TextStyle(
@@ -738,6 +741,8 @@ DataRow _productDataRow(
 
   return DataRow(
     cells: [
+      if (context.userProvider.user?.role == 'superAdmin')
+        DataCell(Text(productInfo.adminId?.name ?? '')),
       // Product name + thumbnail
       DataCell(
         Row(

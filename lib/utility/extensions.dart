@@ -1,4 +1,6 @@
 import 'package:admin/screens/login/provider/user_provider.dart';
+import 'package:admin/screens/superAdmin/all_users/provider/all_user_provider.dart';
+import 'package:admin/screens/superAdmin/login/provider/superAdmin_provider.dart';
 
 import '../screens/brands/provider/brand_provider.dart';
 import '../screens/category/provider/category_provider.dart';
@@ -54,4 +56,10 @@ extension Providers on BuildContext {
 
   UserProvider get userProvider =>
       Provider.of<UserProvider>(this, listen: false);
+
+  AllUsersProvider get allUsersProvider =>
+      Provider.of<AllUsersProvider>(this, listen: false);
+
+  // SuperadminProvider get superAdminProvider =>
+  //     Provider.of<SuperadminProvider>(this, listen: false);
 }

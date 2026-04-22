@@ -2,6 +2,7 @@ import 'package:admin/utility/app_config.dart';
 
 class Product {
   String? sId;
+  ProRef? adminId;
   String? name;
   String? description;
   int? quantity;
@@ -19,6 +20,7 @@ class Product {
 
   Product(
       {this.sId,
+      this.adminId,
       this.name,
       this.description,
       this.quantity,
@@ -36,6 +38,7 @@ class Product {
 
   Product.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    adminId = json['adminId'] != null ? ProRef.fromJson(json['adminId']) : null;
     name = json['name'];
     description = json['description'];
     quantity = json['quantity'];
@@ -72,6 +75,7 @@ class Product {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
+    data['adminId'] = adminId;
     data['name'] = this.name;
     data['description'] = this.description;
     data['quantity'] = this.quantity;

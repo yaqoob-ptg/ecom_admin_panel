@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:admin/core/data/data_provider.dart';
+import 'package:admin/core/routes/app_pages.dart';
 import 'package:admin/models/api_response.dart';
 import 'package:admin/models/user.dart';
-import 'package:admin/screens/login/login_screen.dart';
 import 'package:admin/services/http_services.dart';
 import 'package:admin/utility/constants.dart';
 import 'package:admin/utility/snack_bar_helper.dart';
@@ -32,17 +32,20 @@ class UserProvider extends ChangeNotifier {
   }
 
   // ─── Login ────────────────────────────────────────────────────────────────
-  Future<String?> login(LoginData data) async {
+  Future<String?> login(LoginData data, {String? endpoint}) async {
     try {
       Map<String, dynamic> loginData = {
         "email": data.name.toLowerCase().trim(), // data.name holds email field
         "password": data.password,
-        'requiredRole': 'admin',
       };
+      // Add requiredRole only if endpoint is NOT provided
+      if (endpoint == null) {
+        loginData['requiredRole'] = 'admin';
+      }
       print(loginData);
 
       final response = await service.addItem(
-        endpointUrl: 'users/login',
+        endpointUrl: endpoint ?? 'users/login',
         itemData: loginData,
       );
 
@@ -133,44 +136,44 @@ class UserProvider extends ChangeNotifier {
   }
 
   // ─── Reset Password ─────────────────────────────────────────────────────
-  Future<String?> resetPassword(
-      String token, String newPassword, String confirmPassword) async {
-    try {
-      final response = await service.addItem(
-        endpointUrl: 'users/reset-password/$token',
-        itemData: {
-          'password': newPassword,
-          'confirmPassword': confirmPassword,
-        },
-      );
+  // Future<String?> resetPassword(
+  //     String token, String newPassword, String confirmPassword) async {
+  //   try {
+  //     final response = await service.addItem(
+  //       endpointUrl: 'users/reset-password/$token',
+  //       itemData: {
+  //         'password': newPassword,
+  //         'confirmPassword': confirmPassword,
+  //       },
+  //     );
 
-      if (response.isOk) {
-        final ApiResponse apiResponse =
-            ApiResponse.fromJson(response.body, null);
+  //     if (response.isOk) {
+  //       final ApiResponse apiResponse =
+  //           ApiResponse.fromJson(response.body, null);
 
-        if (apiResponse.success == true) {
-          SnackBarHelper.showSuccessSnackBar(
-            apiResponse.message ?? 'Password reset successfully! Please login.',
-          );
-          log('Password reset successful');
-          return null;
-        } else {
-          SnackBarHelper.showErrorSnackBar(
-            apiResponse.message ?? 'Failed to reset password',
-          );
-          return apiResponse.message ?? 'Failed to reset password';
-        }
-      } else {
-        final msg = response.body?['message'] ?? response.statusText;
-        SnackBarHelper.showErrorSnackBar('Error: $msg');
-        return 'Error: $msg';
-      }
-    } catch (e) {
-      log('Reset password error: $e');
-      SnackBarHelper.showErrorSnackBar('An error occurred. Please try again.');
-      return 'An error occurred: $e';
-    }
-  }
+  //       if (apiResponse.success == true) {
+  //         SnackBarHelper.showSuccessSnackBar(
+  //           apiResponse.message ?? 'Password reset successfully! Please login.',
+  //         );
+  //         log('Password reset successful');
+  //         return null;
+  //       } else {
+  //         SnackBarHelper.showErrorSnackBar(
+  //           apiResponse.message ?? 'Failed to reset password',
+  //         );
+  //         return apiResponse.message ?? 'Failed to reset password';
+  //       }
+  //     } else {
+  //       final msg = response.body?['message'] ?? response.statusText;
+  //       SnackBarHelper.showErrorSnackBar('Error: $msg');
+  //       return 'Error: $msg';
+  //     }
+  //   } catch (e) {
+  //     log('Reset password error: $e');
+  //     SnackBarHelper.showErrorSnackBar('An error occurred. Please try again.');
+  //     return 'An error occurred: $e';
+  //   }
+  // }
 
   // ─── Verify Reset Token ─────────────────────────────────────────────────
   Future<bool> verifyResetToken(String token) async {
@@ -264,6 +267,6 @@ class UserProvider extends ChangeNotifier {
     _user = null;
     box.remove(USER_INFO_BOX);
     notifyListeners(); // 🔥 important
-    Get.offAll(const LoginScreen());
+    Get.offAllNamed(AppPages.LOGIN);
   }
 }

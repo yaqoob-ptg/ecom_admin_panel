@@ -68,7 +68,6 @@ class OrderScreen extends StatelessWidget {
                           Gap(40),
                           IconButton(
                               onPressed: () {
-                                //TODO: should complete call getAllOrders
                                 context.dataProvider
                                     .getAllOrders(showSnack: true);
                               },

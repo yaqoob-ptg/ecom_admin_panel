@@ -425,7 +425,8 @@ class _ProductsToolbar extends StatelessWidget {
         Expanded(
           child: Text("My Products", style: titleStyle),
         ),
-        _addNewButton(context),
+        if (context.userProvider.user?.role != 'superAdmin')
+          _addNewButton(context),
         Gap(smallGap),
         _refreshButton(context),
       ],

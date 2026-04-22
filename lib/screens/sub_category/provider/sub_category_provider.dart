@@ -96,8 +96,6 @@ class SubCategoryProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: should complete deleteSubCategory
-
   deleteSubCategory(SubCategory subCategory) async {
     try {
       Response response = await service.deleteItem(

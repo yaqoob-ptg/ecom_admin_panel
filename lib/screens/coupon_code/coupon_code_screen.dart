@@ -34,19 +34,20 @@ class CouponCodeScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ),
-                          ElevatedButton.icon(
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: defaultPadding * 1.5,
-                                vertical: defaultPadding,
+                          if (context.userProvider.user?.role != 'superAdmin')
+                            ElevatedButton.icon(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: defaultPadding * 1.5,
+                                  vertical: defaultPadding,
+                                ),
                               ),
+                              onPressed: () {
+                                showAddCouponForm(context, null);
+                              },
+                              icon: Icon(Icons.add),
+                              label: Text("Add New"),
                             ),
-                            onPressed: () {
-                              showAddCouponForm(context, null);
-                            },
-                            icon: Icon(Icons.add),
-                            label: Text("Add New"),
-                          ),
                           Gap(20),
                           IconButton(
                               onPressed: () {

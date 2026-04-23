@@ -58,6 +58,7 @@
 
 import 'package:admin/screens/superAdmin/sales/sales_Dashboard_screen.dart';
 import 'package:admin/screens/superAdmin/all_users/all_users_screen.dart';
+import 'package:admin/screens/superAdmin/sales_dashboard/sales_dashboard_screen.dart';
 import 'package:admin/utility/extensions.dart';
 
 import '../../brands/brand_screen.dart';
@@ -109,7 +110,7 @@ class MainScreenProvider extends ChangeNotifier {
         break;
       case 'Sales':
         print('Loading Sales Screen');
-        selectedScreen = const SalesDashboard();
+        selectedScreen = const SalesDashboardScreen();
         break;
       case 'Category':
         selectedScreen = CategoryScreen();
@@ -148,11 +149,11 @@ class MainScreenProvider extends ChangeNotifier {
         break;
 
       default:
-        if (isSuperAdmin) {
-          selectedScreen = const SalesDashboard();
-        } else {
-          selectedScreen = DashboardScreen();
-        }
+        // if (isSuperAdmin) {
+        //   selectedScreen = const SalesDashboard();
+        // } else {
+        selectedScreen = DashboardScreen();
+      // }
     }
     notifyListeners();
   }

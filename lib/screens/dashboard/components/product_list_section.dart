@@ -348,7 +348,7 @@
 //                 ),
 //                 SizedBox(height: 2),
 //                 Text(
-//                   '\$${product.price}',
+//                   'Rs.${product.price}',
 //                   style: TextStyle(
 //                     fontSize: smSize,
 //                     color: Colors.greenAccent,
@@ -425,7 +425,7 @@
 //       ),
 //       DataCell(Text(productInfo.proCategoryId?.name ?? '')),
 //       DataCell(Text(productInfo.proSubCategoryId?.name ?? '')),
-//       DataCell(Text('\$${productInfo.price}')),
+//       DataCell(Text('Rs.${productInfo.price}')),
 //       DataCell(
 //         IconButton(
 //           onPressed: () => edit?.call(),
@@ -696,7 +696,7 @@ class _MobileProductCard extends StatelessWidget {
                 ),
                 SizedBox(height: 2),
                 Text(
-                  '\$${product.price}',
+                  'Rs.${product.price}',
                   style: TextStyle(
                     fontSize: smSize,
                     color: Colors.greenAccent,
@@ -775,7 +775,7 @@ DataRow _productDataRow(
       ),
       DataCell(Text(productInfo.proCategoryId?.name ?? '')),
       DataCell(Text(productInfo.proSubCategoryId?.name ?? '')),
-      DataCell(Text('\$${productInfo.price}')),
+      DataCell(Text('Rs.${productInfo.price}')),
       DataCell(
         IconButton(
           onPressed: () => edit?.call(),

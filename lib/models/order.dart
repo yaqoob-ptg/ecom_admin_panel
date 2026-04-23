@@ -10,21 +10,24 @@ class Order {
   CouponCode? couponCode;
   String? trackingUrl;
   String? orderDate;
+  String? adminId;
+  String? adminName; // from populated adminId.name
+  String? adminEmail; // from populated adminId.emai
   int? iV;
 
   Order(
       {this.shippingAddress,
-        this.orderTotal,
-        this.sId,
-        this.userID,
-        this.orderStatus,
-        this.items,
-        this.totalPrice,
-        this.paymentMethod,
-        this.couponCode,
-        this.trackingUrl,
-        this.orderDate,
-        this.iV});
+      this.orderTotal,
+      this.sId,
+      this.userID,
+      this.orderStatus,
+      this.items,
+      this.totalPrice,
+      this.paymentMethod,
+      this.couponCode,
+      this.trackingUrl,
+      this.orderDate,
+      this.iV});
 
   Order.fromJson(Map<String, dynamic> json) {
     shippingAddress = json['shippingAddress'] != null
@@ -35,7 +38,7 @@ class Order {
         : null;
     sId = json['_id'];
     userID =
-    json['userID'] != null ? new UserID.fromJson(json['userID']) : null;
+        json['userID'] != null ? new UserID.fromJson(json['userID']) : null;
     orderStatus = json['orderStatus'];
     if (json['items'] != null) {
       items = <Items>[];
@@ -43,12 +46,20 @@ class Order {
         items!.add(new Items.fromJson(v));
       });
     }
-    totalPrice = json['totalPrice']?.toDouble();;
+    totalPrice = json['totalPrice']?.toDouble();
+    ;
     paymentMethod = json['paymentMethod'];
     couponCode = json['couponCode'] != null
         ? new CouponCode.fromJson(json['couponCode'])
         : null;
     trackingUrl = json['trackingUrl'];
+    if (json['adminId'] is Map) {
+      adminId = json['adminId']['_id'];
+      adminName = json['adminId']['name'];
+      adminEmail = json['adminId']['email'];
+    } else {
+      adminId = json['adminId']?.toString();
+    }
     orderDate = json['orderDate'];
     iV = json['__v'];
   }
@@ -75,6 +86,11 @@ class Order {
       data['couponCode'] = this.couponCode!.toJson();
     }
     data['trackingUrl'] = this.trackingUrl;
+
+    data['adminId'] = this.adminId;
+    data['adminName'] = this.adminName;
+    data['adminEmail'] = this.adminEmail;
+
     data['orderDate'] = this.orderDate;
     data['__v'] = this.iV;
     return data;
@@ -91,11 +107,11 @@ class ShippingAddress {
 
   ShippingAddress(
       {this.phone,
-        this.street,
-        this.city,
-        this.state,
-        this.postalCode,
-        this.country});
+      this.street,
+      this.city,
+      this.state,
+      this.postalCode,
+      this.country});
 
   ShippingAddress.fromJson(Map<String, dynamic> json) {
     phone = json['phone'];
@@ -169,11 +185,11 @@ class Items {
 
   Items(
       {this.productID,
-        this.productName,
-        this.quantity,
-        this.price,
-        this.variant,
-        this.sId});
+      this.productName,
+      this.quantity,
+      this.price,
+      this.variant,
+      this.sId});
 
   Items.fromJson(Map<String, dynamic> json) {
     productID = json['productID'];

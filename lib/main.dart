@@ -4,6 +4,7 @@ import 'package:admin/screens/login/provider/user_provider.dart';
 import 'package:admin/screens/superAdmin/all_users/provider/all_user_provider.dart';
 import 'package:admin/screens/superAdmin/sales/provider/sales_provider.dart';
 import 'package:admin/screens/superAdmin/login/provider/superAdmin_provider.dart';
+import 'package:admin/screens/superAdmin/sales_dashboard/provider/sales_dashboard_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -55,9 +56,10 @@ void main() async {
     ChangeNotifierProvider(
         create: (context) => UserProvider(context.dataProvider)),
     ChangeNotifierProvider(create: (context) => AllUsersProvider()),
+    ChangeNotifierProvider(create: (context) => SalesDashboardProvider()),
     // ChangeNotifierProvider(
     //     create: (context) => SuperadminProvider(context.dataProvider)),
-    ChangeNotifierProvider(create: (context) => SalesProvider()),
+    // ChangeNotifierProvider(create: (context) => SalesProvider()),
   ], child: MyApp()));
 }
 

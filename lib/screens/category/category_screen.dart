@@ -1,4 +1,5 @@
 import 'package:admin/utility/extensions.dart';
+import 'package:admin/utility/responsive_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../utility/constants.dart';
@@ -27,25 +28,27 @@ class CategoryScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Expanded(
-                            child: Text(
-                              "My Categories",
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                          ),
-                          ElevatedButton.icon(
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: defaultPadding * 1.5,
-                                vertical: defaultPadding,
+                          // Expanded(
+                          //   child: Text(
+                          //     "My Categories",
+                          //     style: Theme.of(context).textTheme.titleMedium,
+                          //   ),
+                          // ),
+                          // Spacer(),
+                          if (context.userProvider.user?.role == 'superAdmin')
+                            ElevatedButton.icon(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: defaultPadding * 1.5,
+                                  vertical: defaultPadding,
+                                ),
                               ),
+                              onPressed: () {
+                                showAddCategoryForm(context, null);
+                              },
+                              icon: Icon(Icons.add),
+                              label: Text("Add New"),
                             ),
-                            onPressed: () {
-                              showAddCategoryForm(context, null);
-                            },
-                            icon: Icon(Icons.add),
-                            label: Text("Add New"),
-                          ),
                           Gap(20),
                           IconButton(
                               onPressed: () {
@@ -61,7 +64,7 @@ class CategoryScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

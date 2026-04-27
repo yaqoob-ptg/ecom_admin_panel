@@ -1,7 +1,4 @@
-import 'package:admin/utility/constants.dart';
 import 'package:admin/utility/responsive_constants.dart';
-import 'package:admin/widgets/profile_card.dart';
-
 import 'provider/main_screen_provider.dart';
 import '../../utility/extensions.dart';
 import 'package:flutter/material.dart';
@@ -76,12 +73,12 @@ class MainScreen extends StatelessWidget {
           appBar: isMobile
               ? AppBar(
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  actions: const [
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: ProfileCard(),
-                    ),
-                  ],
+                  // actions: const [
+                  //   Padding(
+                  //     padding: EdgeInsets.all(10.0),
+                  //     child: ProfileCard(),
+                  //   ),
+                  // ],
                 )
               : null,
           body: SafeArea(

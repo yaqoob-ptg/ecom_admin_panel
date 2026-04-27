@@ -98,7 +98,8 @@ class DashBoardHeader extends StatelessWidget {
                       fontSize: AppFontSize.lg(context),
                     ),
               ),
-              if (!isMobile) ProfileCard(),
+              // if (!isMobile)
+              ProfileCard(),
             ],
           ),
           SizedBox(height: AppSpacing.itemGap(context)),
@@ -134,7 +135,8 @@ class DashBoardHeader extends StatelessWidget {
 
         SizedBox(width: AppSpacing.itemGap(context)),
 
-        if (!isMobile) ProfileCard(),
+        // if (!isMobile)
+        ProfileCard(),
       ],
     );
   }

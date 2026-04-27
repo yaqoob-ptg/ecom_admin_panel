@@ -266,7 +266,9 @@ class UserProvider extends ChangeNotifier {
   void logOutUser() {
     _user = null;
     box.remove(USER_INFO_BOX);
-    notifyListeners(); // 🔥 important
+    box.remove('accessToken');
+    box.remove('refreshToken');
+    notifyListeners();
     Get.offAllNamed(AppPages.LOGIN);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:admin/connuctivity_provider.dart';
 import 'package:admin/models/user.dart';
 import 'package:admin/screens/login/login_screen.dart';
 import 'package:admin/screens/login/provider/user_provider.dart';
@@ -31,6 +32,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => ConnectivityProvider()),
     ChangeNotifierProvider(create: (context) => DataProvider()),
     ChangeNotifierProvider(create: (context) => MainScreenProvider()),
     ChangeNotifierProvider(

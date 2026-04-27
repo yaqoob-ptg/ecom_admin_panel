@@ -269,7 +269,6 @@ import 'package:admin/utility/extensions.dart';
 import 'components/dash_board_header.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import '../../utility/constants.dart';
 import '../../utility/responsive_constants.dart';
 import 'components/add_product_form.dart';
 import 'components/order_details_section.dart';
@@ -410,7 +409,8 @@ class _ProductsToolbar extends StatelessWidget {
           Gap(smallGap),
           Row(
             children: [
-              _addNewButton(context),
+              if (context.userProvider.user?.role != 'superAdmin')
+                _addNewButton(context),
               const Spacer(),
               _refreshButton(context),
             ],

@@ -97,7 +97,7 @@ class CategoryHeader extends StatelessWidget {
                       fontSize: AppFontSize.lg(context),
                     ),
               ),
-              // const ProfileCard(),
+              if (!isMobile) const ProfileCard(),
             ],
           ),
           SizedBox(height: AppSpacing.itemGap(context)),
@@ -125,7 +125,7 @@ class CategoryHeader extends StatelessWidget {
           ),
         ),
         SizedBox(width: AppSpacing.itemGap(context)),
-        const ProfileCard(),
+        if (!isMobile) const ProfileCard(),
       ],
     );
   }

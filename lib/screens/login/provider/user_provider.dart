@@ -6,6 +6,7 @@ import 'package:admin/models/api_response.dart';
 import 'package:admin/models/user.dart';
 import 'package:admin/services/http_services.dart';
 import 'package:admin/utility/constants.dart';
+import 'package:admin/utility/extensions.dart';
 import 'package:admin/utility/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
@@ -268,6 +269,15 @@ class UserProvider extends ChangeNotifier {
     box.remove(USER_INFO_BOX);
     box.remove('accessToken');
     box.remove('refreshToken');
+    // Reset DataProvider state
+    try {
+      final context = Get.context;
+      if (context != null) {
+        context.dataProvider.clearData();
+      }
+    } catch (e) {
+      print("Error clearing data: $e");
+    }
     notifyListeners();
     Get.offAllNamed(AppPages.LOGIN);
   }

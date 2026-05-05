@@ -83,13 +83,13 @@ class DataProvider extends ChangeNotifier {
   //   getAllNotifications();
   // }
 
-  bool _isInitialized = false;
-  bool get isInitialized => _isInitialized;
+  // bool _isInitialized = false;
+  // bool get isInitialized => _isInitialized;
 
   Future<void> init() async {
-    if (_isInitialized) return; // ✅ prevent multiple calls
+    // if (_isInitialized) return; // ✅ prevent multiple calls
 
-    _isInitialized = true;
+    // _isInitialized = true;
 
     await Future.wait([
       getAllProduct(),
@@ -604,5 +604,20 @@ class DataProvider extends ChangeNotifier {
     }
 
     return count;
+  }
+
+  void clearData() {
+    _allCategories.clear();
+    _allSubCategories.clear();
+    _allBrands.clear();
+    _allProducts.clear();
+    _allVariantTypes.clear();
+    _allVariants.clear();
+    _allCoupons.clear();
+    _allPosters.clear();
+    _allOrders.clear();
+    _allNotifications.clear();
+
+    notifyListeners();
   }
 }

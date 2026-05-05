@@ -1,7 +1,122 @@
+// import '../../../utility/extensions.dart';
+// import 'package:flutter/material.dart';
+// import 'package:gap/gap.dart';
+// import '../../../utility/constants.dart';
+// import '../../../widgets/custom_text_field.dart';
+
+// class SendNotificationForm extends StatelessWidget {
+//   const SendNotificationForm({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var size = MediaQuery.of(context).size;
+//     return SingleChildScrollView(
+//       child: Form(
+//         key: context.notificationProvider.sendNotificationFormKey,
+//         child: Container(
+//           padding: EdgeInsets.all(defaultPadding),
+//           width: size.width * 0.5,
+//           decoration: BoxDecoration(
+//             color: bgColor,
+//             borderRadius: BorderRadius.circular(12.0),
+//           ),
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               Gap(defaultPadding),
+//               CustomTextField(
+//                 controller: context.notificationProvider.titleCtrl,
+//                 labelText: 'Enter Notification Title ....',
+//                 onSave: (val) {},
+//                 validator: (value) {
+//                   if (value == null || value.isEmpty) {
+//                     return 'Please enter a Title name';
+//                   }
+//                   return null;
+//                 },
+//               ),
+//               CustomTextField(
+//                 controller: context.notificationProvider.descriptionCtrl,
+//                 labelText: 'Enter Notification Description ....',
+//                 lineNumber: 3,
+//                 onSave: (val) {},
+//                 validator: (value) {
+//                   if (value == null || value.isEmpty) {
+//                     return 'Please enter a description ';
+//                   }
+//                   return null;
+//                 },
+//               ),
+//               CustomTextField(
+//                 controller: context.notificationProvider.imageUrlCtrl,
+//                 labelText: 'Enter Notification Image Url ....',
+//                 onSave: (val) {},
+//               ),
+//               Gap(defaultPadding * 2),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   ElevatedButton(
+//                     style: ElevatedButton.styleFrom(
+//                       foregroundColor: Colors.white,
+//                       backgroundColor: secondaryColor,
+//                     ),
+//                     onPressed: () {
+//                       Navigator.of(context).pop();
+//                     },
+//                     child: Text('Cancel'),
+//                   ),
+//                   SizedBox(width: defaultPadding),
+//                   ElevatedButton(
+//                     style: ElevatedButton.styleFrom(
+//                       foregroundColor: Colors.white,
+//                       backgroundColor: primaryColor,
+//                     ),
+//                     onPressed: () {
+//                       // Validate and save the form
+//                       if (context.notificationProvider.sendNotificationFormKey
+//                           .currentState!
+//                           .validate()) {
+//                         context.notificationProvider.sendNotificationFormKey
+//                             .currentState!
+//                             .save();
+
+//                         context.notificationProvider.sendNotification();
+//                         Navigator.of(context).pop();
+//                       }
+//                     },
+//                     child: Text('Send'),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// // How to show the category popup
+// void sendNotificationFormForm(BuildContext context) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         backgroundColor: bgColor,
+//         title: Center(
+//             child: Text('Send Notification'.toUpperCase(),
+//                 style: TextStyle(color: primaryColor))),
+//         content: SendNotificationForm(),
+//       );
+//     },
+//   );
+// }
 import '../../../utility/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../utility/constants.dart';
+import '../../../utility/responsive_constants.dart';
 import '../../../widgets/custom_text_field.dart';
 
 class SendNotificationForm extends StatelessWidget {
@@ -9,50 +124,54 @@ class SendNotificationForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    final padding = AppSpacing.cardPadding(context);
+    final gap = AppSpacing.sectionGap(context);
+
     return SingleChildScrollView(
       child: Form(
         key: context.notificationProvider.sendNotificationFormKey,
         child: Container(
-          padding: EdgeInsets.all(defaultPadding),
-          width: size.width * 0.5,
+          padding: padding,
           decoration: BoxDecoration(
             color: bgColor,
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Gap(defaultPadding),
+              Gap(gap),
               CustomTextField(
                 controller: context.notificationProvider.titleCtrl,
-                labelText: 'Enter Notification Title ....',
+                labelText: 'Enter Notification Title ...',
                 onSave: (val) {},
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a Title name';
+                    return 'Please enter a title';
                   }
                   return null;
                 },
               ),
+              SizedBox(height: AppSpacing.itemGap(context)),
               CustomTextField(
                 controller: context.notificationProvider.descriptionCtrl,
-                labelText: 'Enter Notification Description ....',
+                labelText: 'Enter Notification Description ...',
                 lineNumber: 3,
                 onSave: (val) {},
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a description ';
+                    return 'Please enter a description';
                   }
                   return null;
                 },
               ),
+              SizedBox(height: AppSpacing.itemGap(context)),
               CustomTextField(
                 controller: context.notificationProvider.imageUrlCtrl,
-                labelText: 'Enter Notification Image Url ....',
+                labelText: 'Enter Notification Image Url ...',
                 onSave: (val) {},
               ),
-              Gap(defaultPadding * 2),
+              Gap(gap * 1.5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -60,35 +179,42 @@ class SendNotificationForm extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: secondaryColor,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md(context),
+                        vertical: AppSpacing.sm(context),
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Cancel'),
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text('Cancel',
+                        style: TextStyle(fontSize: AppFontSize.body(context))),
                   ),
-                  SizedBox(width: defaultPadding),
+                  Gap(gap),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: primaryColor,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md(context),
+                        vertical: AppSpacing.sm(context),
+                      ),
                     ),
                     onPressed: () {
-                      // Validate and save the form
                       if (context.notificationProvider.sendNotificationFormKey
                           .currentState!
                           .validate()) {
                         context.notificationProvider.sendNotificationFormKey
                             .currentState!
                             .save();
-
                         context.notificationProvider.sendNotification();
                         Navigator.of(context).pop();
                       }
                     },
-                    child: Text('Send'),
+                    child: Text('Send',
+                        style: TextStyle(fontSize: AppFontSize.body(context))),
                   ),
                 ],
               ),
+              Gap(gap * 0.5),
             ],
           ),
         ),
@@ -97,17 +223,42 @@ class SendNotificationForm extends StatelessWidget {
   }
 }
 
-// How to show the category popup
+// ─────────────────────────────────────────────────────────────────────────────
+//  DIALOG LAUNCHER
+// ─────────────────────────────────────────────────────────────────────────────
 void sendNotificationFormForm(BuildContext context) {
+  final w = MediaQuery.of(context).size.width;
+
+  final double dialogWidth = () {
+    if (w < AppBreakpoints.mobileS) return w * 0.92;
+    if (w < AppBreakpoints.mobileL) return w * 0.88;
+    if (w < AppBreakpoints.tablet) return w * 0.80;
+    if (w < AppBreakpoints.webS) return w * 0.55;
+    return w * 0.45;
+  }();
+
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         backgroundColor: bgColor,
+        insetPadding: EdgeInsets.symmetric(
+          horizontal: (w - dialogWidth) / 2,
+          vertical: 24,
+        ),
         title: Center(
-            child: Text('Send Notification'.toUpperCase(),
-                style: TextStyle(color: primaryColor))),
-        content: SendNotificationForm(),
+          child: Text(
+            'SEND NOTIFICATION',
+            style: TextStyle(
+              color: primaryColor,
+              fontSize: AppFontSize.lg(context),
+            ),
+          ),
+        ),
+        content: SizedBox(
+          width: dialogWidth,
+          child: const SendNotificationForm(),
+        ),
       );
     },
   );

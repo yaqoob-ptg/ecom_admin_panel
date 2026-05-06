@@ -13,7 +13,7 @@ class TodaySalesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SalesDashboardProvider>(
       builder: (_, prov, __) {
-        final s       = prov.summary;
+        final s = prov.summary;
         final isMobile = Responsive.isMobile(context);
 
         return Container(
@@ -61,26 +61,44 @@ class TodaySalesCard extends StatelessWidget {
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _BigStat('\$${_fmt(s.todayRevenue)}', 'Revenue Today'),
+                        _BigStat(
+                            'Rs. ${_fmt(s.todayRevenue)}', 'Revenue Today'),
                         const SizedBox(height: 16),
                         Row(children: [
-                          Expanded(child: _SmallStat('${s.todayOrders}', 'Orders', const Color(0xFF667EEA))),
-                          Expanded(child: _SmallStat('${s.pendingOrders}', 'Pending', const Color(0xFFFFC107))),
-                          Expanded(child: _SmallStat('${s.deliveredOrders}', 'Delivered', const Color(0xFF4CAF50))),
+                          Expanded(
+                              child: _SmallStat('${s.todayOrders}', 'Orders',
+                                  const Color(0xFF667EEA))),
+                          Expanded(
+                              child: _SmallStat('${s.pendingOrders}', 'Pending',
+                                  const Color(0xFFFFC107))),
+                          Expanded(
+                              child: _SmallStat('${s.deliveredOrders}',
+                                  'Delivered', const Color(0xFF4CAF50))),
                         ]),
                       ],
                     )
                   : Row(
                       children: [
-                        Expanded(flex: 2, child: _BigStat('\$${_fmt(s.todayRevenue)}', 'Revenue Today')),
+                        Expanded(
+                            flex: 2,
+                            child: _BigStat('Rs. ${_fmt(s.todayRevenue)}',
+                                'Revenue Today')),
                         const SizedBox(width: 20),
-                        Expanded(child: _SmallStat('${s.todayOrders}', 'Total Orders', const Color(0xFF667EEA))),
+                        Expanded(
+                            child: _SmallStat('${s.todayOrders}',
+                                'Total Orders', const Color(0xFF667EEA))),
                         const SizedBox(width: 10),
-                        Expanded(child: _SmallStat('${s.pendingOrders}', 'Pending', const Color(0xFFFFC107))),
+                        Expanded(
+                            child: _SmallStat('${s.pendingOrders}', 'Pending',
+                                const Color(0xFFFFC107))),
                         const SizedBox(width: 10),
-                        Expanded(child: _SmallStat('${s.deliveredOrders}', 'Delivered', const Color(0xFF4CAF50))),
+                        Expanded(
+                            child: _SmallStat('${s.deliveredOrders}',
+                                'Delivered', const Color(0xFF4CAF50))),
                         const SizedBox(width: 10),
-                        Expanded(child: _SmallStat('${s.cancelledOrders}', 'Cancelled', const Color(0xFFFF6B6B))),
+                        Expanded(
+                            child: _SmallStat('${s.cancelledOrders}',
+                                'Cancelled', const Color(0xFFFF6B6B))),
                       ],
                     ),
             ],
@@ -92,8 +110,20 @@ class TodaySalesCard extends StatelessWidget {
 
   String _dateLabel() {
     final now = DateTime.now();
-    const months = ['Jan','Feb','Mar','Apr','May','Jun',
-                    'Jul','Aug','Sep','Oct','Nov','Dec'];
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
     return '${now.day} ${months[now.month - 1]} ${now.year}';
   }
 
@@ -147,9 +177,7 @@ class _SmallStat extends StatelessWidget {
         children: [
           Text(value,
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: color)),
+                  fontSize: 20, fontWeight: FontWeight.bold, color: color)),
           const SizedBox(height: 2),
           Text(label,
               style: const TextStyle(fontSize: 10, color: Colors.white54)),

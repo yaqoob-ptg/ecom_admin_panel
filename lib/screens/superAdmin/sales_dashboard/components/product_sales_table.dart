@@ -153,7 +153,7 @@ class _DesktopProductTable extends StatelessWidget {
                       style: const TextStyle(fontSize: 13)))),
               DataCell(Expanded(
                   flex: 3,
-                  child: Text('\$${_fmt(p.totalRevenue)}',
+                  child: Text('Rs. ${_fmt(p.totalRevenue)}',
                       style: const TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
@@ -210,7 +210,7 @@ class _MobileProductList extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('\$${_fmt(p.totalRevenue)}',
+                  Text('Rs. ${_fmt(p.totalRevenue)}',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF4CAF50),

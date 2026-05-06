@@ -1,43 +1,5 @@
-// import 'package:admin/utility/constants.dart';
-// import 'package:admin/utility/extensions.dart';
-// import 'package:flutter/material.dart';
-//
-// class ProfileCard extends StatelessWidget {
-//   const ProfileCard({
-//     Key? key,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       margin: EdgeInsets.only(left: defaultPadding),
-//       padding: EdgeInsets.symmetric(
-//         horizontal: defaultPadding,
-//         vertical: defaultPadding / 2,
-//       ),
-//       decoration: BoxDecoration(
-//         color: secondaryColor,
-//         borderRadius: const BorderRadius.all(Radius.circular(10)),
-//         border: Border.all(color: Colors.white10),
-//       ),
-//       child: Row(
-//         children: [
-//           Image.asset(
-//             "assets/images/profile_pic.png",
-//             height: 38,
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-//             child: Text("${context.userProvider.getLoginUsr()?.name}"),
-//           ),
-//           Icon(Icons.keyboard_arrow_down),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 import 'package:admin/screens/login/provider/user_provider.dart';
+import 'package:admin/screens/profile/profile_screen.dart';
 import 'package:admin/utility/constants.dart';
 import 'package:admin/utility/extensions.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +37,15 @@ class _ProfileCardState extends State<ProfileCard> {
       items: <PopupMenuEntry<dynamic>>[
         PopupMenuItem<dynamic>(
           onTap: () {
-            // TODO: Navigate to Edit Profile screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChangeNotifierProvider.value(
+                  value: context.profileProvider,
+                  child: const ProfileScreen(),
+                ),
+              ),
+            );
           },
           child: const Row(
             children: [
@@ -131,16 +101,63 @@ class _ProfileCardState extends State<ProfileCard> {
             final user = userProvider.user;
             return Row(
               children: [
-                Image.asset(
-                  "assets/images/profile_pic.png",
-                  height: 38,
+                // Image.asset(
+                //   "assets/images/profile_pic.png",
+                //   height: 38,
+                // ),
+                Consumer<UserProvider>(
+                  builder: (context, userProvider, child) {
+                    final user = userProvider.user;
+                    return Row(
+                      children: [
+                        // In your ProfileCard widget (updated image display)
+                        Container(
+                          height: 38,
+                          width: 38,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                              colors: [
+                                primaryColor.withOpacity(0.3),
+                                secondaryColor,
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            border: Border.all(color: Colors.white24, width: 1),
+                            image: user?.profileImage != null &&
+                                    user!.profileImage!.isNotEmpty
+                                ? DecorationImage(
+                                    image: NetworkImage(user.profileImage!),
+                                    fit: BoxFit.cover,
+                                    onError: (exception, stackTrace) {
+                                      print(
+                                          'Error loading profile image: $exception');
+                                    },
+                                  )
+                                : null,
+                          ),
+                          child: ClipOval(
+                            child: (user?.profileImage == null ||
+                                    user!.profileImage!.isEmpty)
+                                ? const Icon(
+                                    Icons.person,
+                                    color: Colors.white54,
+                                    size: 22,
+                                  )
+                                : null,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: defaultPadding / 2),
+                          child: Text("${user?.name ?? 'User'}"),
+                        ),
+                        const Icon(Icons.keyboard_arrow_down),
+                      ],
+                    );
+                  },
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: defaultPadding / 2),
-                  child: Text("${user?.name ?? 'User'}"),
-                ),
-                const Icon(Icons.keyboard_arrow_down),
               ],
             );
           },

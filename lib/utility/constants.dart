@@ -6,5 +6,5 @@ const bgColor = Color(0xFF212332);
 const defaultPadding = 16.0;
 const USER_INFO_BOX = 'USER_INFO_BOX';
 
-// const MAIN_URL = 'http://localhost:3000';
-const MAIN_URL = "https://ecom-backend-yaqoob-ptgs-projects.vercel.app";
+const MAIN_URL = 'http://localhost:3000';
+// const MAIN_URL = "https://ecom-backend-yaqoob-ptgs-projects.vercel.app";

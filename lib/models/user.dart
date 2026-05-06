@@ -125,8 +125,11 @@ class User {
   // Account deactivation
   DateTime? deactivatedAt;
   String? deactivationReason;
-//for admins approved
+  //for admins approved
   bool? isApproved;
+
+  String? profileImage; // Cloudinary URL
+  String? profileImageId; // Cloudinary public ID
 
   // Timestamps
   String? createdAt;
@@ -158,6 +161,8 @@ class User {
     this.deactivatedAt,
     this.deactivationReason,
     this.isApproved,
+    this.profileImage,
+    this.profileImageId,
     this.createdAt,
     this.updatedAt,
     this.iV,
@@ -171,6 +176,14 @@ class User {
   bool get isAccountLocked {
     if (lockUntil == null) return false;
     return lockUntil!.isAfter(DateTime.now());
+  }
+
+  String? get fullUrl {
+    if (profileImage == null || profileImage!.isEmpty) return null;
+    // Cloudinary URLs are already full URLs
+    if (profileImage!.startsWith('http')) return profileImage;
+    // If it's a relative path, prepend your base URL (adjust as needed)
+    return profileImage;
   }
 
   String get lockUntilRemaining {
@@ -225,6 +238,8 @@ class User {
         : null;
     deactivationReason = json['deactivationReason'];
     isApproved = json['isApproved'] ?? false;
+    profileImage = json['profileImage'];
+    profileImageId = json['profileImageId'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
@@ -256,6 +271,8 @@ class User {
       'deactivatedAt': deactivatedAt?.toIso8601String(),
       'deactivationReason': deactivationReason,
       'isApproved': isApproved,
+      'profileImage': profileImage,
+      'profileImageId': profileImageId,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
       '__v': iV,
@@ -287,6 +304,8 @@ class User {
     DateTime? deactivatedAt,
     String? deactivationReason,
     bool? isApproved,
+    String? profileImage, // ✨ NEW
+    String? profileImageId, // ✨ NEW
     String? createdAt,
     String? updatedAt,
     int? iV,
@@ -318,6 +337,8 @@ class User {
       deactivatedAt: deactivatedAt ?? this.deactivatedAt,
       deactivationReason: deactivationReason ?? this.deactivationReason,
       isApproved: isApproved ?? this.isApproved,
+      profileImage: profileImage ?? this.profileImage, // ✨ NEW
+      profileImageId: profileImageId ?? this.profileImageId, // ✨ NEW
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       iV: iV ?? this.iV,

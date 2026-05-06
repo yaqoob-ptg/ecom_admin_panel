@@ -152,8 +152,8 @@ class _ProductRow extends StatelessWidget {
               Row(children: [
                 _chip('${product.totalQuantity} units', Colors.white54),
                 const SizedBox(width: 8),
-                _chip(
-                    '\$${_fmt(product.totalRevenue)}', const Color(0xFF4CAF50)),
+                _chip('Rs. ${_fmt(product.totalRevenue)}',
+                    const Color(0xFF4CAF50)),
               ])
             else
               Column(
@@ -162,7 +162,7 @@ class _ProductRow extends StatelessWidget {
                   Text('${product.totalQuantity} units',
                       style:
                           const TextStyle(fontSize: 11, color: Colors.white54)),
-                  Text('\$${_fmt(product.totalRevenue)}',
+                  Text('Rs. ${_fmt(product.totalRevenue)}',
                       style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

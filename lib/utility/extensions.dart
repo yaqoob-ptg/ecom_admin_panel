@@ -1,6 +1,8 @@
 import 'package:admin/screens/login/provider/user_provider.dart';
+import 'package:admin/screens/profile/provider/profile_provider.dart';
 import 'package:admin/screens/superAdmin/all_users/provider/all_user_provider.dart';
 import 'package:admin/screens/superAdmin/login/provider/superAdmin_provider.dart';
+import 'package:admin/screens/superAdmin/sales_dashboard/provider/sales_dashboard_provider.dart';
 
 import '../screens/brands/provider/brand_provider.dart';
 import '../screens/category/provider/category_provider.dart';
@@ -59,6 +61,12 @@ extension Providers on BuildContext {
 
   AllUsersProvider get allUsersProvider =>
       Provider.of<AllUsersProvider>(this, listen: false);
+
+  SalesDashboardProvider get salesDashboardProvider =>
+      Provider.of<SalesDashboardProvider>(this, listen: false);
+
+  ProfileProvider get profileProvider =>
+      Provider.of<ProfileProvider>(this, listen: false);
 
   // SuperadminProvider get superAdminProvider =>
   //     Provider.of<SuperadminProvider>(this, listen: false);

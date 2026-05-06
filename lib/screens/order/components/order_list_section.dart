@@ -396,7 +396,7 @@ class _MobileOrderCard extends StatelessWidget {
 
           // Detail rows
           _detailRow(context, 'Amount',
-              '\$${order.orderTotal?.total?.toStringAsFixed(2) ?? 'N/A'}'),
+              'Rs. ${order.orderTotal?.total?.toStringAsFixed(2) ?? 'N/A'}'),
           _detailRow(context, 'Payment', order.paymentMethod ?? ''),
           Row(
             children: [
@@ -496,7 +496,7 @@ DataRow _orderDataRow(
       ),
     ),
     DataCell(
-        Text('\$${orderInfo.orderTotal?.total?.toStringAsFixed(2) ?? ''}')),
+        Text('Rs. ${orderInfo.orderTotal?.total?.toStringAsFixed(2) ?? ''}')),
     DataCell(Text(orderInfo.paymentMethod ?? '')),
     DataCell(Text(orderInfo.orderStatus ?? '')),
     DataCell(Text(orderInfo.orderDate ?? '')),

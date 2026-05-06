@@ -4003,14 +4003,14 @@ return new A.oi("'"+s+"': Cannot "+o+" "+l+k+n)},
 F(a){throw A.h(A.cG(a))},
 qf(a){var s,r,q,p,o,n
 a=A.b0C(a.replace(String({}),"$receiver$"))
-s=a.match(/\\\$[a-zA-Z]+\\\$/g)
+s=a.match(/\\Rs. [a-zA-Z]+\\Rs. /g)
 if(s==null)s=A.b([],t.s)
-r=s.indexOf("\\$arguments\\$")
-q=s.indexOf("\\$argumentsExpr\\$")
-p=s.indexOf("\\$expr\\$")
-o=s.indexOf("\\$method\\$")
-n=s.indexOf("\\$receiver\\$")
-return new A.aIO(a.replace(new RegExp("\\\\\\$arguments\\\\\\$","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\\$argumentsExpr\\\\\\$","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\\$expr\\\\\\$","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\\$method\\\\\\$","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\\$receiver\\\\\\$","g"),"((?:x|[^x])*)"),r,q,p,o,n)},
+r=s.indexOf("\Rs. arguments\Rs. ")
+q=s.indexOf("\Rs. argumentsExpr\Rs. ")
+p=s.indexOf("\Rs. expr\Rs. ")
+o=s.indexOf("\Rs. method\Rs. ")
+n=s.indexOf("\Rs. receiver\Rs. ")
+return new A.aIO(a.replace(new RegExp("\\\\\Rs. arguments\\\\\Rs. ","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\Rs. argumentsExpr\\\\\Rs. ","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\Rs. expr\\\\\Rs. ","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\Rs. method\\\\\Rs. ","g"),"((?:x|[^x])*)").replace(new RegExp("\\\\\Rs. receiver\\\\\Rs. ","g"),"((?:x|[^x])*)"),r,q,p,o,n)},
 aIP(a){return function($expr$){var $argumentsExpr$="$arguments$"
 try{$expr$.$method$($argumentsExpr$)}catch(s){return s.message}}(a)},
 bbc(a){return function($expr$){try{$expr$.$method$}catch(s){return s.message}}(a)},
@@ -4243,9 +4243,9 @@ beN(a,b,c){var s
 if(typeof b=="string")return a.indexOf(b,c)>=0
 else if(b instanceof A.ry){s=B.d.bC(a,c)
 return b.b.test(s)}else return!J.afy(b,B.d.bC(a,c)).gah(0)},
-bdV(a){if(a.indexOf("$",0)>=0)return a.replace(/\$/g,"$$$$")
+bdV(a){if(a.indexOf("$",0)>=0)return a.replace(/Rs. /g,"$$$$")
 return a},
-b0C(a){if(/[[\]{}()*+?.\\^$|]/.test(a))return a.replace(/[[\]{}()*+?.\\^$|]/g,"\\$&")
+b0C(a){if(/[[\]{}()*+?.\\^$|]/.test(a))return a.replace(/[[\]{}()*+?.\\^$|]/g,"\Rs. &")
 return a},
 hJ(a,b,c){var s
 if(typeof b=="string")return A.bx6(a,b,c)

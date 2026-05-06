@@ -90,7 +90,7 @@
 //             DataCell(Text(admin.adminName)),
 //             DataCell(Text(admin.adminEmail)),
 //             DataCell(Text(admin.orderCount.toString())),
-//             DataCell(Text('\$${admin.totalSales.toStringAsFixed(2)}')),
+//             DataCell(Text('Rs. ${admin.totalSales.toStringAsFixed(2)}')),
 //             DataCell(
 //               Container(
 //                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -171,7 +171,7 @@
 //                     icon: Icons.shopping_cart,
 //                   ),
 //                   _InfoChip(
-//                     label: '\$${admin.totalSales.toStringAsFixed(2)}',
+//                     label: 'Rs. ${admin.totalSales.toStringAsFixed(2)}',
 //                     icon: Icons.attach_money,
 //                   ),
 //                 ],

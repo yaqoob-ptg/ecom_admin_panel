@@ -2,9 +2,8 @@ import 'package:admin/connuctivity_provider.dart';
 import 'package:admin/models/user.dart';
 import 'package:admin/screens/login/login_screen.dart';
 import 'package:admin/screens/login/provider/user_provider.dart';
+import 'package:admin/screens/profile/provider/profile_provider.dart';
 import 'package:admin/screens/superAdmin/all_users/provider/all_user_provider.dart';
-import 'package:admin/screens/superAdmin/sales/provider/sales_provider.dart';
-import 'package:admin/screens/superAdmin/login/provider/superAdmin_provider.dart';
 import 'package:admin/screens/superAdmin/sales_dashboard/provider/sales_dashboard_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,6 @@ import 'screens/brands/provider/brand_provider.dart';
 import 'screens/category/provider/category_provider.dart';
 import 'screens/coupon_code/provider/coupon_code_provider.dart';
 import 'screens/dashboard/provider/dash_board_provider.dart';
-import 'screens/main/main_screen.dart';
 import 'screens/main/provider/main_screen_provider.dart';
 import 'screens/notification/provider/notification_provider.dart';
 import 'screens/order/provider/order_provider.dart';
@@ -59,6 +57,8 @@ void main() async {
         create: (context) => UserProvider(context.dataProvider)),
     ChangeNotifierProvider(create: (context) => AllUsersProvider()),
     ChangeNotifierProvider(create: (context) => SalesDashboardProvider()),
+    ChangeNotifierProvider(
+        create: (context) => ProfileProvider(context.dataProvider)),
     // ChangeNotifierProvider(
     //     create: (context) => SuperadminProvider(context.dataProvider)),
     // ChangeNotifierProvider(create: (context) => SalesProvider()),

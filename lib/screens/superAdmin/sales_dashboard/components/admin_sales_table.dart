@@ -96,7 +96,7 @@ class _DesktopAdminTable extends StatelessWidget {
                   flex: 4, child: _AdminNameCell(stat: stat, rank: i))),
               DataCell(Expanded(
                   flex: 3,
-                  child: Text('\$${_fmt(stat.totalSales)}',
+                  child: Text('Rs. ${_fmt(stat.totalSales)}',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Color(0xFF4CAF50),
@@ -154,7 +154,7 @@ class _MobileAdminList extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  _MiniStat('Revenue', '\$${_fmt(stat.totalSales)}',
+                  _MiniStat('Revenue', 'Rs. ${_fmt(stat.totalSales)}',
                       const Color(0xFF4CAF50)),
                   const SizedBox(width: 8),
                   _MiniStat('Orders', '${stat.orderCount}', Colors.white70),
@@ -392,7 +392,7 @@ String _fmt(double v) {
 //               DataCell(Text('$i',
 //                   style: const TextStyle(color: Colors.white54, fontSize: 12))),
 //               DataCell(_AdminNameCell(stat: stat, rank: i)),
-//               DataCell(Text('\$${_fmt(stat.totalSales)}',
+//               DataCell(Text('Rs. ${_fmt(stat.totalSales)}',
 //                   style: const TextStyle(
 //                       fontWeight: FontWeight.bold,
 //                       color: Color(0xFF4CAF50),
@@ -437,7 +437,7 @@ String _fmt(double v) {
 //               const SizedBox(height: 10),
 //               Row(
 //                 children: [
-//                   _MiniStat('Revenue',  '\$${_fmt(stat.totalSales)}', const Color(0xFF4CAF50)),
+//                   _MiniStat('Revenue',  'Rs. ${_fmt(stat.totalSales)}', const Color(0xFF4CAF50)),
 //                   const SizedBox(width: 8),
 //                   _MiniStat('Orders',   '${stat.orderCount}',         Colors.white70),
 //                 ],

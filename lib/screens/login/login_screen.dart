@@ -96,11 +96,16 @@ class _LoginScreenState extends State<LoginScreen> {
             // colorScheme: ColorScheme.fromSwatch().copyWith(
             //   secondary: primaryColor, // For some loading indicators
             // ),
+            textSelectionTheme: const TextSelectionThemeData(
+              cursorColor: Colors.grey, // cursor color
+              selectionColor: Colors.grey, // selected text background
+              selectionHandleColor: Colors.grey, // selection handle
+            ),
           ),
           child: FlutterLogin(
             headerWidget: headerWidget(),
             loginAfterSignUp: false,
-            logo: const AssetImage('assets/images/logo.png'),
+            logo: AssetImage('assets/logo/Karachi shopping logo.png'),
 
             // ─── Field config: use Email label ──────────────────────────────────
             userType: LoginUserType.email,
@@ -217,28 +222,6 @@ class _LoginScreenState extends State<LoginScreen> {
             // footer: 'Continue as Guest',
           ),
         ),
-        // Positioned(
-        //   bottom: 150, // Adjust this value to align with the bottom of the card
-        //   left: 0,
-        //   right: 0,
-        //   child: Center(
-        //     child: TextButton(
-        //       onPressed: () async {
-        //         // Call the guest login logic from your UserProvider
-        //         await context.userProvider.loginAsGuest();
-        //       },
-        //       child: const Text(
-        //         'Continue as Guest',
-        //         style: TextStyle(
-        //           color: AppColor.darkOrange,
-        //           fontWeight: FontWeight.bold,
-        //           fontSize: 16,
-        //           decoration: TextDecoration.underline,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

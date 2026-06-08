@@ -543,7 +543,10 @@ class _DrawerMenu extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              child: Image.asset("assets/images/logo.png"),
+              child: _Logo(
+                height: 80,
+                padding: const EdgeInsets.all(16),
+              ),
             ),
             ...menuItems.map((item) => _DrawerTile(item: item)),
           ],
@@ -576,7 +579,10 @@ class _RailMenu extends StatelessWidget {
           backgroundColor: Theme.of(ctx).scaffoldBackgroundColor,
           labelType: NavigationRailLabelType.none,
           leading: DrawerHeader(
-            child: Image.asset("assets/images/logo.png"),
+            child: _Logo(
+              height: 80,
+              padding: const EdgeInsets.all(16),
+            ),
           ),
           onDestinationSelected: (index) {
             _selectedIndex.value = index;
@@ -633,7 +639,10 @@ class _FullSidebar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DrawerHeader(
-            child: Image.asset("assets/images/logo.png"),
+            child: _Logo(
+              height: 80,
+              padding: const EdgeInsets.all(16),
+            ),
           ),
           Expanded(
             child: ListView(
@@ -661,7 +670,7 @@ class _Logo extends StatelessWidget {
     return Padding(
       padding: padding,
       child: Image.asset(
-        "assets/images/logo.png",
+        'assets/logo/Karachi shopping logo.png',
         height: height,
         fit: BoxFit.contain,
       ),

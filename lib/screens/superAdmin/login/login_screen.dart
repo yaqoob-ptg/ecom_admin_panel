@@ -101,7 +101,7 @@ class _LoginScreenSuperAdminState extends State<LoginScreenSuperAdmin> {
           child: FlutterLogin(
             // headerWidget: headerWidget(),
             loginAfterSignUp: false,
-            logo: const AssetImage('assets/images/logo.png'),
+            logo: const AssetImage('assets/logo/Karachi shopping logo.png'),
 
             // ─── Field config: use Email label ──────────────────────────────────
             userType: LoginUserType.email,

@@ -1150,6 +1150,8 @@ file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screen
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/posters/components/poster_list_section.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/posters/poster_screen.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/posters/provider/poster_provider.dart
+file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/profile/profile_screen.dart
+file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/profile/provider/profile_provider.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/sub_category/components/add_sub_category_form.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/sub_category/components/sub_category_header.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/sub_category/components/sub_category_list_section.dart
@@ -1167,7 +1169,6 @@ file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screen
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/superAdmin/all_users/provider/all_user_provider.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/superAdmin/login/login_screen.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/superAdmin/login/provider/superAdmin_provider.dart
-file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/superAdmin/sales/provider/sales_provider.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/superAdmin/sales/sales_Dashboard_screen.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/superAdmin/sales_dashboard/components/admin_sales_table.dart
 file:///C:/Users/P520/Desktop/ECommerce%20live/E_commerce_admin_panal/lib/screens/superAdmin/sales_dashboard/components/kpi_cards.dart
